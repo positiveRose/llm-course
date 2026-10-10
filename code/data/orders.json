@@ -1,0 +1,158 @@
+{
+ "today": "2026-09-20",
+ "orders": [
+  {
+   "order_id": 49880,
+   "status": "delivered",
+   "delivered_at": "2026-09-10",
+   "paid_rub": 2490,
+   "payment": "card",
+   "items": [
+    {
+     "name": "Электрический чайник",
+     "price_rub": 2490
+    }
+   ]
+  },
+  {
+   "order_id": 51877,
+   "status": "delivered",
+   "delivered_at": "2026-08-31",
+   "paid_rub": 84990,
+   "payment": "card",
+   "items": [
+    {
+     "name": "Ноутбук 15",
+     "price_rub": 84990
+    }
+   ]
+  },
+  {
+   "order_id": 48213,
+   "status": "delivered",
+   "delivered_at": "2026-09-15",
+   "paid_rub": 13000,
+   "payment": "card",
+   "items": [
+    {
+     "name": "Кофемолка",
+     "price_rub": 6500
+    }
+   ],
+   "note": "Оплата прошла дважды по 6500, второе списание ошибочное"
+  },
+  {
+   "order_id": 53110,
+   "status": "delivered",
+   "delivered_at": "2026-09-11",
+   "paid_rub": 33980,
+   "payment": "sbp",
+   "items": [
+    {
+     "name": "Робот-пылесос",
+     "price_rub": 32990
+    },
+    {
+     "name": "Чехол для телефона",
+     "price_rub": 990
+    }
+   ]
+  },
+  {
+   "order_id": 53422,
+   "status": "delivered",
+   "delivered_at": "2026-09-19",
+   "paid_rub": 36800,
+   "payment": "card",
+   "items": [
+    {
+     "name": "Ноутбук 14",
+     "price_rub": 18400
+    }
+   ],
+   "note": "Оплата прошла дважды по 18400, второе списание ошибочное"
+  },
+  {
+   "order_id": 52876,
+   "status": "delivered",
+   "delivered_at": "2026-09-18",
+   "paid_rub": 5990,
+   "payment": "card",
+   "items": [
+    {
+     "name": "Наушники-вкладыши",
+     "price_rub": 5990
+    }
+   ]
+  },
+  {
+   "order_id": 50990,
+   "status": "delivered",
+   "delivered_at": "2026-09-17",
+   "paid_rub": 64990,
+   "payment": "installments",
+   "items": [
+    {
+     "name": "Ноутбук 16",
+     "price_rub": 64990
+    }
+   ]
+  },
+  {
+   "order_id": 51002,
+   "status": "in_transit",
+   "delivered_at": null,
+   "paid_rub": 7200,
+   "payment": "card",
+   "items": [
+    {
+     "name": "Смарт-часы",
+     "price_rub": 7200
+    }
+   ],
+   "note": "Передан перевозчику 2026-09-14, обещанный срок 2026-09-17"
+  },
+  {
+   "order_id": 54010,
+   "status": "placed",
+   "delivered_at": null,
+   "paid_rub": 12990,
+   "payment": "card",
+   "items": [
+    {
+     "name": "Wi-Fi роутер",
+     "price_rub": 12990
+    }
+   ]
+  },
+  {
+   "order_id": 54077,
+   "status": "assembled",
+   "delivered_at": null,
+   "paid_rub": 0,
+   "payment": "cash_on_delivery",
+   "items": [
+    {
+     "name": "Беспроводные наушники",
+     "price_rub": 8490
+    }
+   ],
+   "note": "Оплата наличными при получении, денег ещё не было"
+  },
+  {
+   "order_id": 54120,
+   "status": "placed",
+   "delivered_at": null,
+   "paid_rub": 129900,
+   "payment": "card",
+   "items": [
+    {
+     "name": "Компьютер с индивидуальной сборкой",
+     "price_rub": 129900
+    }
+   ],
+   "custom_build": true,
+   "build_started": true
+  }
+ ]
+}

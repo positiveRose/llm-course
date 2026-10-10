@@ -1,0 +1,1224 @@
+{
+ "servers": {
+  "orders": "Заказы: поиск, состав, отмена, изменение адреса",
+  "payments": "Оплата, возвраты денег, рассрочка",
+  "returns": "Возврат и обмен товара",
+  "delivery": "Доставка и пункты выдачи",
+  "loyalty": "Бонусы, промокоды, уровень клиента",
+  "catalog": "Товары, наличие, характеристики",
+  "service": "Гарантия, ремонт, инструкции",
+  "crm": "Клиенты, обращения, связь"
+ },
+ "tools": [
+  {
+   "server": "orders",
+   "type": "function",
+   "name": "get_order",
+   "description": "Заказ по номеру: состав, суммы, статус, дата получения и сколько дней прошло с получения. Вызывайте перед любым действием с заказом.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "orders",
+   "type": "function",
+   "name": "list_customer_orders",
+   "description": "Список заказов клиента за последние 12 месяцев: номера, даты, суммы, статусы. Когда клиент не помнит номер заказа.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "customer_id"
+    ],
+    "properties": {
+     "customer_id": {
+      "type": "string",
+      "description": "ID клиента из CRM"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "orders",
+   "type": "function",
+   "name": "cancel_order",
+   "description": "Отменяет заказ целиком до передачи в доставку. После передачи в доставку отмена невозможна, клиент может отказаться при получении.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "reason"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "reason": {
+      "type": "string",
+      "description": "Причина отмены"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "orders",
+   "type": "function",
+   "name": "remove_order_item",
+   "description": "Убирает одну позицию из заказа до сборки. Деньги за позицию возвращаются автоматически.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "sku"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "sku": {
+      "type": "string",
+      "description": "Артикул позиции"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "orders",
+   "type": "function",
+   "name": "change_delivery_address",
+   "description": "Меняет адрес доставки заказа, пока заказ не передан в доставку.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "address"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "address": {
+      "type": "string",
+      "description": "Новый адрес полностью"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "orders",
+   "type": "function",
+   "name": "repeat_order",
+   "description": "Создаёт новый заказ с тем же составом, что у прошлого. Для постоянных покупок.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер прошлого заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "orders",
+   "type": "function",
+   "name": "get_order_documents",
+   "description": "Кассовый чек, счёт-фактура и накладная по заказу в PDF. Для бухгалтерии и юрлиц.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "document"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "document": {
+      "type": "string",
+      "description": "receipt, invoice или waybill"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "payments",
+   "type": "function",
+   "name": "create_refund",
+   "description": "Возвращает деньги по заказу на карту или счёт, с которого платили. Необратимо. Только когда клиент просит деньги назад и товар уже получен.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "amount_rub",
+     "reason"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "amount_rub": {
+      "type": "integer",
+      "description": "Сумма в рублях"
+     },
+     "reason": {
+      "type": "string",
+      "description": "Причина"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "payments",
+   "type": "function",
+   "name": "get_refund_status",
+   "description": "Статус уже оформленного возврата денег: создан, одобрен, отправлен в банк, зачислен. Когда клиент спрашивает, где деньги.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "payments",
+   "type": "function",
+   "name": "issue_store_credit",
+   "description": "Зачисляет сумму на внутренний баланс магазина вместо возврата на карту. Только если клиент сам выбрал баланс.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "amount_rub"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "amount_rub": {
+      "type": "integer",
+      "description": "Сумма в рублях"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "payments",
+   "type": "function",
+   "name": "get_payment_status",
+   "description": "Прошла ли оплата заказа, каким способом и когда. Когда деньги списались, а заказ не подтверждён.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "payments",
+   "type": "function",
+   "name": "resend_payment_link",
+   "description": "Повторно отправляет клиенту ссылку на оплату заказа, если прошлая истекла.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "payments",
+   "type": "function",
+   "name": "get_installment_schedule",
+   "description": "График платежей по рассрочке: даты, суммы, остаток долга.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "payments",
+   "type": "function",
+   "name": "cancel_installment",
+   "description": "Отменяет рассрочку и пересчитывает заказ в полную оплату. Нужен клиент с полной суммой на карте.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "returns",
+   "type": "function",
+   "name": "create_return_request",
+   "description": "Заявка на возврат товара: курьер забирает товар, после проверки оформляется возврат денег. С этого начинается возврат товара, который у клиента на руках.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "sku",
+     "reason"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "sku": {
+      "type": "string",
+      "description": "Артикул товара"
+     },
+     "reason": {
+      "type": "string",
+      "description": "Причина"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "returns",
+   "type": "function",
+   "name": "create_exchange_request",
+   "description": "Заявка на обмен товара на такой же другого размера или цвета без возврата денег.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "sku",
+     "new_sku"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "sku": {
+      "type": "string",
+      "description": "Артикул товара"
+     },
+     "new_sku": {
+      "type": "string",
+      "description": "Артикул замены"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "returns",
+   "type": "function",
+   "name": "get_return_status",
+   "description": "Статус заявки на возврат или обмен товара: курьер назначен, товар получен складом, проверка, решение.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "returns",
+   "type": "function",
+   "name": "get_return_policy",
+   "description": "Правила возврата для товара: срок, условия, невозвратные категории.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "sku"
+    ],
+    "properties": {
+     "sku": {
+      "type": "string",
+      "description": "Артикул товара"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "delivery",
+   "type": "function",
+   "name": "track_shipment",
+   "description": "Где сейчас посылка: последний статус перевозчика, город, ожидаемая дата. Для заказов в пути.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "delivery",
+   "type": "function",
+   "name": "get_delivery_slots",
+   "description": "Свободные интервалы курьерской доставки на ближайшие 7 дней.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "delivery",
+   "type": "function",
+   "name": "reschedule_delivery",
+   "description": "Переносит курьерскую доставку на другой день и интервал.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "date",
+     "slot"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "date": {
+      "type": "string",
+      "description": "Дата ГГГГ-ММ-ДД"
+     },
+     "slot": {
+      "type": "string",
+      "description": "Интервал, например 10-14"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "delivery",
+   "type": "function",
+   "name": "find_pickup_points",
+   "description": "Пункты выдачи рядом с адресом: адрес, часы работы, срок хранения.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "address"
+    ],
+    "properties": {
+     "address": {
+      "type": "string",
+      "description": "Адрес или город"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "delivery",
+   "type": "function",
+   "name": "extend_pickup_storage",
+   "description": "Продлевает хранение заказа в пункте выдачи на 3 дня, один раз.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "delivery",
+   "type": "function",
+   "name": "report_lost_parcel",
+   "description": "Открывает розыск посылки у перевозчика, если статус не менялся больше 5 дней.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "delivery",
+   "type": "function",
+   "name": "get_delivery_cost",
+   "description": "Стоимость и сроки доставки по адресу для корзины или товара.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "address",
+     "sku"
+    ],
+    "properties": {
+     "address": {
+      "type": "string",
+      "description": "Адрес"
+     },
+     "sku": {
+      "type": "string",
+      "description": "Артикул товара"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "loyalty",
+   "type": "function",
+   "name": "get_bonus_balance",
+   "description": "Баланс бонусов клиента и когда сгорают ближайшие.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "customer_id"
+    ],
+    "properties": {
+     "customer_id": {
+      "type": "string",
+      "description": "ID клиента"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "loyalty",
+   "type": "function",
+   "name": "check_promo_code",
+   "description": "Проверяет промокод: действует ли, на какие товары, до какой даты, почему не применился.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "code"
+    ],
+    "properties": {
+     "code": {
+      "type": "string",
+      "description": "Промокод"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "loyalty",
+   "type": "function",
+   "name": "apply_promo_code",
+   "description": "Применяет промокод к неоплаченному заказу и пересчитывает сумму.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "code"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "code": {
+      "type": "string",
+      "description": "Промокод"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "loyalty",
+   "type": "function",
+   "name": "accrue_goodwill_bonus",
+   "description": "Начисляет компенсационные бонусы за неудобства, до 500 бонусов без согласования. Это не возврат денег.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "customer_id",
+     "amount",
+     "reason"
+    ],
+    "properties": {
+     "customer_id": {
+      "type": "string",
+      "description": "ID клиента"
+     },
+     "amount": {
+      "type": "integer",
+      "description": "Бонусов"
+     },
+     "reason": {
+      "type": "string",
+      "description": "Причина"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "loyalty",
+   "type": "function",
+   "name": "get_loyalty_level",
+   "description": "Уровень клиента в программе лояльности и сколько осталось до следующего.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "customer_id"
+    ],
+    "properties": {
+     "customer_id": {
+      "type": "string",
+      "description": "ID клиента"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "catalog",
+   "type": "function",
+   "name": "search_products",
+   "description": "Поиск товаров в каталоге по словам и фильтрам.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "query"
+    ],
+    "properties": {
+     "query": {
+      "type": "string",
+      "description": "Что ищет клиент"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "catalog",
+   "type": "function",
+   "name": "get_product_card",
+   "description": "Карточка товара: характеристики, комплектация, цена.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "sku"
+    ],
+    "properties": {
+     "sku": {
+      "type": "string",
+      "description": "Артикул"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "catalog",
+   "type": "function",
+   "name": "check_stock",
+   "description": "Наличие товара на складах и в магазинах по городу.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "sku",
+     "city"
+    ],
+    "properties": {
+     "sku": {
+      "type": "string",
+      "description": "Артикул"
+     },
+     "city": {
+      "type": "string",
+      "description": "Город"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "catalog",
+   "type": "function",
+   "name": "notify_when_in_stock",
+   "description": "Подписывает клиента на уведомление о поступлении товара.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "customer_id",
+     "sku"
+    ],
+    "properties": {
+     "customer_id": {
+      "type": "string",
+      "description": "ID клиента"
+     },
+     "sku": {
+      "type": "string",
+      "description": "Артикул"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "catalog",
+   "type": "function",
+   "name": "get_compatible_accessories",
+   "description": "Совместимые аксессуары и расходники для товара.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "sku"
+    ],
+    "properties": {
+     "sku": {
+      "type": "string",
+      "description": "Артикул"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "catalog",
+   "type": "function",
+   "name": "compare_products",
+   "description": "Сравнение двух товаров по характеристикам.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "sku_a",
+     "sku_b"
+    ],
+    "properties": {
+     "sku_a": {
+      "type": "string",
+      "description": "Первый артикул"
+     },
+     "sku_b": {
+      "type": "string",
+      "description": "Второй артикул"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "service",
+   "type": "function",
+   "name": "get_warranty_info",
+   "description": "Условия и срок гарантии на товар из заказа, сколько гарантии осталось.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "sku"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "sku": {
+      "type": "string",
+      "description": "Артикул"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "service",
+   "type": "function",
+   "name": "create_warranty_claim",
+   "description": "Открывает гарантийное обращение по неисправному товару: диагностика, ремонт или замена.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "order_id",
+     "sku",
+     "problem"
+    ],
+    "properties": {
+     "order_id": {
+      "type": "integer",
+      "description": "Номер заказа"
+     },
+     "sku": {
+      "type": "string",
+      "description": "Артикул"
+     },
+     "problem": {
+      "type": "string",
+      "description": "Описание неисправности"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "service",
+   "type": "function",
+   "name": "get_warranty_claim_status",
+   "description": "Статус гарантийного обращения: принят, диагностика, ремонт, готов к выдаче.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "claim_id"
+    ],
+    "properties": {
+     "claim_id": {
+      "type": "string",
+      "description": "Номер обращения"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "service",
+   "type": "function",
+   "name": "find_service_center",
+   "description": "Авторизованные сервисные центры бренда рядом с адресом.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "brand",
+     "address"
+    ],
+    "properties": {
+     "brand": {
+      "type": "string",
+      "description": "Бренд"
+     },
+     "address": {
+      "type": "string",
+      "description": "Город или адрес"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "service",
+   "type": "function",
+   "name": "book_repair_pickup",
+   "description": "Вызывает курьера, который заберёт товар в ремонт.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "claim_id",
+     "date"
+    ],
+    "properties": {
+     "claim_id": {
+      "type": "string",
+      "description": "Номер гарантийного обращения"
+     },
+     "date": {
+      "type": "string",
+      "description": "Дата ГГГГ-ММ-ДД"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "service",
+   "type": "function",
+   "name": "get_manual",
+   "description": "Инструкция к товару: PDF и разделы с ответами на частые вопросы.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "sku"
+    ],
+    "properties": {
+     "sku": {
+      "type": "string",
+      "description": "Артикул"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "service",
+   "type": "function",
+   "name": "get_error_code_info",
+   "description": "Что значит код ошибки на экране устройства и что с ним делать.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "sku",
+     "code"
+    ],
+    "properties": {
+     "sku": {
+      "type": "string",
+      "description": "Артикул"
+     },
+     "code": {
+      "type": "string",
+      "description": "Код ошибки, например E05"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "crm",
+   "type": "function",
+   "name": "get_customer_profile",
+   "description": "Профиль клиента: контакты, адреса, заметки операторов.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "customer_id"
+    ],
+    "properties": {
+     "customer_id": {
+      "type": "string",
+      "description": "ID клиента"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "crm",
+   "type": "function",
+   "name": "update_customer_contacts",
+   "description": "Меняет телефон или email клиента после подтверждения кодом.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "customer_id",
+     "phone",
+     "email"
+    ],
+    "properties": {
+     "customer_id": {
+      "type": "string",
+      "description": "ID клиента"
+     },
+     "phone": {
+      "type": "string",
+      "description": "Новый телефон"
+     },
+     "email": {
+      "type": "string",
+      "description": "Новый email"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "crm",
+   "type": "function",
+   "name": "add_ticket_note",
+   "description": "Добавляет внутреннюю заметку к обращению. Клиент её не видит.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "ticket_id",
+     "note"
+    ],
+    "properties": {
+     "ticket_id": {
+      "type": "string",
+      "description": "Номер обращения"
+     },
+     "note": {
+      "type": "string",
+      "description": "Текст заметки"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "crm",
+   "type": "function",
+   "name": "escalate_ticket",
+   "description": "Передаёт обращение старшему оператору, когда вопрос вне полномочий бота или клиент требует человека.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "ticket_id",
+     "reason"
+    ],
+    "properties": {
+     "ticket_id": {
+      "type": "string",
+      "description": "Номер обращения"
+     },
+     "reason": {
+      "type": "string",
+      "description": "Причина"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "crm",
+   "type": "function",
+   "name": "create_callback_request",
+   "description": "Заказывает обратный звонок оператора в удобное клиенту время.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "phone",
+     "time"
+    ],
+    "properties": {
+     "phone": {
+      "type": "string",
+      "description": "Телефон"
+     },
+     "time": {
+      "type": "string",
+      "description": "Удобное время"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "crm",
+   "type": "function",
+   "name": "send_sms",
+   "description": "Отправляет клиенту SMS с текстом. Для кодов, ссылок и напоминаний.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "phone",
+     "text"
+    ],
+    "properties": {
+     "phone": {
+      "type": "string",
+      "description": "Телефон"
+     },
+     "text": {
+      "type": "string",
+      "description": "Текст SMS"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "crm",
+   "type": "function",
+   "name": "send_email",
+   "description": "Отправляет клиенту письмо с текстом и вложениями.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "email",
+     "subject",
+     "body"
+    ],
+    "properties": {
+     "email": {
+      "type": "string",
+      "description": "Email"
+     },
+     "subject": {
+      "type": "string",
+      "description": "Тема"
+     },
+     "body": {
+      "type": "string",
+      "description": "Текст"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "crm",
+   "type": "function",
+   "name": "delete_customer_data",
+   "description": "Удаляет персональные данные клиента по его запросу. Необратимо, нужно подтверждение личности.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "customer_id"
+    ],
+    "properties": {
+     "customer_id": {
+      "type": "string",
+      "description": "ID клиента"
+     }
+    }
+   },
+   "strict": true
+  },
+  {
+   "server": "crm",
+   "type": "function",
+   "name": "unsubscribe_marketing",
+   "description": "Отписывает клиента от рекламных рассылок по SMS и email.",
+   "parameters": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+     "customer_id"
+    ],
+    "properties": {
+     "customer_id": {
+      "type": "string",
+      "description": "ID клиента"
+     }
+    }
+   },
+   "strict": true
+  }
+ ]
+}

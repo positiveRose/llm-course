@@ -1,0 +1,32 @@
+{"id": "R-01", "text": "Где мой заказ 51002? Обещали вчера привезти", "expected": "track_shipment"}
+{"id": "R-02", "text": "Хочу вернуть пылесос из заказа 50412, он шумит сильнее, чем в описании", "expected": "create_return_request"}
+{"id": "R-03", "text": "Вы оформили мне возврат неделю назад, а деньги так и не пришли. Заказ 48211", "expected": "get_refund_status"}
+{"id": "R-04", "text": "Курьер забрал куртку, на складе её приняли. Верните деньги за заказ 50317, 7990 рублей", "expected": "create_refund"}
+{"id": "R-05", "text": "Не надо денег на карту, зачислите мне на баланс в магазине, заказ 49880", "expected": "issue_store_credit"}
+{"id": "R-06", "text": "Промокод SPRING15 не срабатывает на кроссовки, почему?", "expected": "check_promo_code"}
+{"id": "R-07", "text": "Можно перенести доставку заказа 51244 на субботу?", "expected": "reschedule_delivery"}
+{"id": "R-08", "text": "Часы показывают ошибку E05 и не заряжаются", "expected": "get_error_code_info"}
+{"id": "R-09", "text": "Чайник сломался через два месяца, не включается. Заказ 47100", "expected": "create_warranty_claim"}
+{"id": "R-10", "text": "Сколько ещё действует гарантия на ноутбук из заказа 45510?", "expected": "get_warranty_info"}
+{"id": "R-11", "text": "Передумал, отмените заказ 51390, он ещё не отправлен", "expected": "cancel_order"}
+{"id": "R-12", "text": "Уберите из заказа 51391 чехол, остальное оставьте", "expected": "remove_order_item"}
+{"id": "R-13", "text": "Поменяйте кроссовки из заказа 50011 на 43 размер", "expected": "create_exchange_request"}
+{"id": "R-14", "text": "Не успеваю забрать заказ 50870 из пункта выдачи, можно подержать ещё пару дней?", "expected": "extend_pickup_storage"}
+{"id": "R-15", "text": "Посылка 49932 неделю висит в статусе «в пути», никаких изменений", "expected": "report_lost_parcel"}
+{"id": "R-16", "text": "Деньги с карты списались, а заказ 51500 так и не подтвердился", "expected": "get_payment_status"}
+{"id": "R-17", "text": "Нужна счёт-фактура по заказу 50600 для бухгалтерии", "expected": "get_order_documents"}
+{"id": "R-18", "text": "Какой у меня остаток по рассрочке за телевизор? Заказ 46120", "expected": "get_installment_schedule"}
+{"id": "R-19", "text": "Сколько у меня бонусов и когда они сгорят? Мой ID C-10233", "expected": "get_bonus_balance"}
+{"id": "R-20", "text": "Курьер опоздал на три часа, я отпрашивался с работы. Компенсируйте хоть чем-то, мой ID C-20871", "expected": "accrue_goodwill_bonus"}
+{"id": "R-21", "text": "Есть ли в наличии PulseOne S3 в Казани?", "expected": "check_stock"}
+{"id": "R-22", "text": "Сообщите, когда снова появится робот-пылесос AquaVac R7, мой ID C-30112", "expected": "notify_when_in_stock"}
+{"id": "R-23", "text": "Какие насадки подходят к пылесосу AquaVac R7?", "expected": "get_compatible_accessories"}
+{"id": "R-24", "text": "Хочу поговорить с живым человеком, бот мне не помогает. Обращение T-9921", "expected": "escalate_ticket"}
+{"id": "R-25", "text": "Перезвоните мне завтра после шести, +7 912 000-11-22", "expected": "create_callback_request"}
+{"id": "R-26", "text": "Удалите все мои данные из вашего магазина, ID C-44120", "expected": "delete_customer_data"}
+{"id": "R-27", "text": "Хватит слать мне рекламу, ID C-44120", "expected": "unsubscribe_marketing"}
+{"id": "R-28", "text": "Где ближайший сервисный центр Philips в Самаре?", "expected": "find_service_center"}
+{"id": "R-29", "text": "Как долго ремонтируют мои наушники? Обращение по гарантии W-5512", "expected": "get_warranty_claim_status"}
+{"id": "R-30", "text": "Ссылка на оплату заказа 51620 не открывается, пришлите новую", "expected": "resend_payment_link"}
+{"id": "R-31", "text": "Можно ли вернуть открытую зубную щётку?", "expected": "get_return_policy"}
+{"id": "R-32", "text": "Хочу закрыть рассрочку по заказу 46120 и доплатить остаток сразу", "expected": "cancel_installment"}

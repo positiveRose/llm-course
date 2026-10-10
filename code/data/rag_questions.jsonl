@@ -1,0 +1,45 @@
+{"id": "Q-01", "question": "Робот-пылесос показывает E22, что это значит и что делать?", "docs": ["instrukciya-robot-pylesos"]}
+{"id": "Q-02", "question": "Как часто менять фильтр в роботе-пылесосе, если дома живёт кот?", "docs": ["instrukciya-robot-pylesos", "robot-pylesos"]}
+{"id": "Q-03", "question": "Сколько робот-пылесос проработает без подзарядки на максимальной мощности?", "docs": ["instrukciya-robot-pylesos"]}
+{"id": "Q-04", "question": "Какой высоты порог между комнатами робот-пылесос переедет сам?", "docs": ["instrukciya-robot-pylesos"]}
+{"id": "Q-05", "question": "Можно ли протирать лидар пылесоса влажной тряпкой?", "docs": ["instrukciya-robot-pylesos"]}
+{"id": "Q-06", "question": "На сколько циклов заряда рассчитан аккумулятор робота-пылесоса?", "docs": ["instrukciya-robot-pylesos"]}
+{"id": "Q-07", "question": "Можно ли ходить в смарт-часах в сауну?", "docs": ["instrukciya-smart-chasy"]}
+{"id": "Q-08", "question": "Сколько часы держат заряд, если включить постоянно активный экран?", "docs": ["instrukciya-smart-chasy"]}
+{"id": "Q-09", "question": "Почему на часы не приходят уведомления с телефона?", "docs": ["instrukciya-smart-chasy"]}
+{"id": "Q-10", "question": "С какими версиями Android и iOS работают смарт-часы?", "docs": ["instrukciya-smart-chasy"]}
+{"id": "Q-11", "question": "Что делать перед тем, как отдать смарт-часы другому человеку?", "docs": ["instrukciya-smart-chasy"]}
+{"id": "Q-12", "question": "Сколько дней магазин хранит отремонтированный товар и что потом?", "docs": ["reglament-garantiynogo-obsluzhivaniya"]}
+{"id": "Q-13", "question": "Сколько длится диагностика в сервисном центре?", "docs": ["reglament-garantiynogo-obsluzhivaniya", "garantiyny-remont"]}
+{"id": "Q-14", "question": "Ремонт идёт уже два месяца, что я могу потребовать?", "docs": ["reglament-garantiynogo-obsluzhivaniya"]}
+{"id": "Q-15", "question": "Дадут ли мне технику на подмену, пока мою чинят?", "docs": ["reglament-garantiynogo-obsluzhivaniya", "garantiyny-remont"]}
+{"id": "Q-16", "question": "Кто оплачивает экспертизу, если мы спорим о причине поломки?", "docs": ["reglament-garantiynogo-obsluzhivaniya"]}
+{"id": "Q-17", "question": "Есть ли гарантия на платный ремонт?", "docs": ["reglament-garantiynogo-obsluzhivaniya"]}
+{"id": "Q-18", "question": "Одна и та же поломка повторилась в третий раз, что делать?", "docs": ["reglament-garantiynogo-obsluzhivaniya"]}
+{"id": "Q-19", "question": "Какой процент бонусов начисляют, если я потратил за год больше ста тысяч?", "docs": ["pravila-programmy-loyalnosti"]}
+{"id": "Q-20", "question": "Сколько бонусов дадут за отзыв с фотографией?", "docs": ["pravila-programmy-loyalnosti"]}
+{"id": "Q-21", "question": "Какая минимальная сумма списания бонусов?", "docs": ["pravila-programmy-loyalnosti"]}
+{"id": "Q-22", "question": "Я год ничего не покупал, что будет с накопленными бонусами?", "docs": ["pravila-programmy-loyalnosti"]}
+{"id": "Q-23", "question": "Начислят ли бонусы на стоимость доставки и подъёма на этаж?", "docs": ["pravila-programmy-loyalnosti"]}
+{"id": "Q-24", "question": "Сколько стоит поднять стиральную машину на пятый этаж, если есть грузовой лифт?", "docs": ["usloviya-dostavki", "krupnaya-tehnika"]}
+{"id": "Q-25", "question": "Может ли жена забрать мой заказ из пункта выдачи?", "docs": ["usloviya-dostavki", "samovyvoz"]}
+{"id": "Q-26", "question": "Посылка не двигается по трек-номеру неделю, что делать?", "docs": ["usloviya-dostavki", "otslezhivanie-zakaza"]}
+{"id": "Q-27", "question": "Можно ли перенести интервал доставки и за сколько часов?", "docs": ["usloviya-dostavki"]}
+{"id": "Q-28", "question": "Примете ли вы старый холодильник на утилизацию и сколько это стоит?", "docs": ["usloviya-dostavki"]}
+{"id": "Q-29", "question": "Можно ли вернуть электрическую зубную щётку, если я её не использовал?", "docs": ["reglament-vozvrata-i-obmena", "vozvrat-tovara"]}
+{"id": "Q-30", "question": "Я купил ноутбук в рассрочку и хочу вернуть, что будет с договором банка?", "docs": ["reglament-vozvrata-i-obmena", "oplata-chastyami"]}
+{"id": "Q-31", "question": "Вернут ли мне стоимость доставки, если я возвращаю один товар из трёх?", "docs": ["reglament-vozvrata-i-obmena"]}
+{"id": "Q-32", "question": "Нашёл скол на корпусе через три дня после получения, что делать?", "docs": ["reglament-vozvrata-i-obmena", "brak-pri-poluchenii"]}
+{"id": "Q-33", "question": "Магазин отказал в возврате, можно ли получить письменное обоснование?", "docs": ["reglament-vozvrata-i-obmena"]}
+{"id": "Q-34", "question": "Сколько дней рассматривается письменная претензия?", "docs": ["reglament-vozvrata-i-obmena"]}
+{"id": "Q-35", "question": "Есть ли у вас рассрочка и от какой суммы заказа?", "docs": ["oplata-chastyami"]}
+{"id": "Q-36", "question": "До скольких работает поддержка в выходные?", "docs": ["chasy-raboty-podderzhki"]}
+{"id": "Q-37", "question": "Сколько стоит подписка на расширенную гарантию на три года?", "docs": []}
+{"id": "Q-38", "question": "Есть ли у вас магазины в Самаре, куда можно прийти и посмотреть товар?", "docs": []}
+{"id": "Q-39", "question": "Можно ли оплатить заказ криптовалютой?", "docs": []}
+{"id": "Q-40", "question": "Какой у робота-пылесоса уровень шума в тихом режиме?", "docs": ["instrukciya-robot-pylesos"]}
+{"id": "M-01", "question": "Я вернул ноутбук, купленный в рассрочку. Что будет с договором банка и с бонусами за этот заказ?", "docs": ["reglament-vozvrata-i-obmena", "pravila-programmy-loyalnosti"], "multi": true}
+{"id": "M-02", "question": "Стиральную машину везут в другой город, и она пришла с вмятиной. Кто платит за доставку в сервис и что мне делать сначала?", "docs": ["reglament-vozvrata-i-obmena", "reglament-garantiynogo-obsluzhivaniya"], "multi": true}
+{"id": "M-03", "question": "Сколько я всего заплачу за доставку холодильника на четвёртый этаж без лифта и сколько бонусов мне за это начислят?", "docs": ["usloviya-dostavki", "pravila-programmy-loyalnosti"], "multi": true}
+{"id": "M-04", "question": "Робот-пылесос перестал держать заряд через месяц, и я хочу подменный на время ремонта. Это гарантийный случай и дадут ли подмену?", "docs": ["instrukciya-robot-pylesos", "reglament-garantiynogo-obsluzhivaniya"], "multi": true}
+{"id": "M-05", "question": "Часы не подключаются к телефону, и если это брак, я хочу вернуть деньги. С чего начать и сколько ждать?", "docs": ["instrukciya-smart-chasy", "reglament-garantiynogo-obsluzhivaniya"], "multi": true}
